@@ -1,0 +1,25 @@
+{
+    "name": "obelaw/reward-zone",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Obelaw\\RewardZone\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Karim Mohamed",
+            "email": "komicho1996@gmail.com"
+        }
+    ],
+    "require": {
+        "laravel/framework": "^11.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Obelaw\\RewardZone\\Providers\\ObelawRewardZoneServiceProvider"
+            ]
+        }
+    }
+}
