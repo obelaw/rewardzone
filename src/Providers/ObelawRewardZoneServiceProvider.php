@@ -13,7 +13,10 @@ class ObelawRewardZoneServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->mergeConfigFrom(
+            __DIR__ . '/../../config/rewardzone.php',
+            'obelaw.rewardzone'
+        );
     }
 
     /**
@@ -25,6 +28,10 @@ class ObelawRewardZoneServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
+
+            $this->publishes([
+                __DIR__ . '/../../config/rewardzone.php' => config_path('obelaw/rewardzone.php'),
+            ]);
         }
     }
 }
