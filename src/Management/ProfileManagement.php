@@ -15,8 +15,8 @@ class ProfileManagement
 
     public function getPoints()
     {
-        $creditPoints = $this->profileable->profile->points()->where('type', 'credit')->sum('points');
-        $debitPoints = $this->profileable->profile->points()->where('type', 'debit')->sum('points');
+        $creditPoints = $this->profileable->profile?->points()->where('type', 'credit')->sum('points') ?? 0;
+        $debitPoints = $this->profileable->profile?->points()->where('type', 'debit')->sum('points') ?? 0;
         return $creditPoints - $debitPoints;
     }
 
