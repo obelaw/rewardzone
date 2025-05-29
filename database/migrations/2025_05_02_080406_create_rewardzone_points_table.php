@@ -17,6 +17,7 @@ return new class extends BaseMigration
             $table->integer('points')->default(0);
             $table->text('description')->nullable();
             $table->enum('type', ['credit', 'debit'])->default('credit');
+            $table->date('expires_at')->nullable();
             $table->timestamps();
         });
     }

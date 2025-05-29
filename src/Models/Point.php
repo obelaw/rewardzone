@@ -11,6 +11,7 @@ class Point extends BaseModel
         'points',
         'description',
         'type',
+        'expires_at',
     ];
 
     public function profile()

@@ -19,16 +19,21 @@ class ProfileManagement
 
     public function getPoints()
     {
-        $creditPoints = $this->profile?->points()->where('type', 'credit')->sum('points') ?? 0;
+        $creditPoints = $this->profile?->points()
+            ->where('expires_at', '>', now())
+            ->where('type', 'credit')->sum('points') ?? 0;
+
         $debitPoints = $this->profile?->points()->where('type', 'debit')->sum('points') ?? 0;
         return $creditPoints - $debitPoints;
     }
 
-    public function addPoint($points, $description = null): int
+    public function addPoint($points, $description = null, $expiresAt = null): int
     {
         $this->profile->points()->create([
             'points' => $points,
             'description' => $description,
+            'type' => 'credit',
+            'expires_at' => $expiresAt ?? now()->addDays(oconfig('obelaw.rewardzone.expires_at')),
         ]);
 
         return $this->getPoints();
