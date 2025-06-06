@@ -39,10 +39,8 @@ class ProfileManagement
         return $this->getPoints();
     }
 
-    public function deductionPint($points, $description = null): int
+    public function deductionPoint($points, $description = null): int
     {
-        throw_if($this->getPoints() < $points, 'Insufficient points for deduction.');
-
         $this->profile->points()->create([
             'points' => $points,
             'description' => $description,
